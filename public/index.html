@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f7fb">
+    <title>Student Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="page-header">
+            <div class="brand-mark" aria-hidden="true">SM</div>
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT</p>
+                <h1>Attendance &amp; marks</h1>
+                <p class="page-description">Keep track of your students and their progress.</p>
+            </div>
+        </header>
+
+        <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+        <section class="panel add-panel" aria-labelledby="add-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">GET STARTED</p>
+                    <h2 id="add-heading">Add a student</h2>
+                </div>
+                <span class="step-badge" aria-hidden="true">01</span>
+            </div>
+
+            <form id="addStudentForm" class="student-form">
+                <label>
+                    <span>Student name</span>
+                    <input type="text" id="name" name="name" placeholder="e.g. Alex Morgan" autocomplete="name" required>
+                </label>
+                <label>
+                    <span>Course</span>
+                    <input type="text" id="course" name="course" placeholder="e.g. Computer Science" required>
+                </label>
+                <label>
+                    <span>Attendance</span>
+                    <div class="input-suffix">
+                        <input type="number" id="attendance" name="attendance" placeholder="0–100" min="0" max="100" step="any" required>
+                        <span>%</span>
+                    </div>
+                </label>
+                <label>
+                    <span>Marks</span>
+                    <input type="number" id="marks" name="marks" placeholder="Enter marks" min="0" step="any" required>
+                </label>
+                <button class="button button-primary add-button" type="submit">
+                    <span aria-hidden="true">+</span> Add student
+                </button>
+            </form>
+        </section>
+
+        <section class="panel students-panel" aria-labelledby="students-heading">
+            <div class="section-heading students-heading">
+                <div>
+                    <p class="eyebrow">YOUR ROSTER</p>
+                    <h2 id="students-heading">Students <span id="studentCount" class="count-badge">0</span></h2>
+                </div>
+                <p class="section-hint">Edit attendance and marks anytime.</p>
+            </div>
+
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Student</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Attendance</th>
+                            <th scope="col">Marks</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable">
+                        <tr><td class="table-message" colspan="6">Loading students…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <dialog id="editDialog" class="edit-dialog" aria-labelledby="edit-heading">
+        <form id="editStudentForm">
+            <div class="dialog-heading">
+                <div>
+                    <p class="eyebrow">STUDENT RECORD</p>
+                    <h2 id="edit-heading">Update progress</h2>
+                    <p id="editStudentName" class="dialog-description"></p>
+                </div>
+                <button class="icon-button" type="button" id="closeEdit" aria-label="Close edit dialog">&times;</button>
+            </div>
+            <label>
+                <span>Attendance</span>
+                <div class="input-suffix">
+                    <input type="number" id="editAttendance" min="0" max="100" step="any" required>
+                    <span>%</span>
+                </div>
+            </label>
+            <label>
+                <span>Marks</span>
+                <input type="number" id="editMarks" min="0" step="any" required>
+            </label>
+            <div class="dialog-actions">
+                <button class="button button-secondary" type="button" id="cancelEdit">Cancel</button>
+                <button class="button button-primary" type="submit">Save changes</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
